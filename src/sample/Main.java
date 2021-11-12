@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -17,6 +18,9 @@ public class Main extends Application {
 
     Stage window;
     Scene launcher, game;
+    AudioClip shopMusic = new AudioClip("../assets/sounds/music/shop.wav");
+    AudioClip mainMusic = new AudioClip("../assets/sounds/music/main.wav");
+
     public void openLauncher(Stage primaryStage) {
 
         window = primaryStage;
@@ -35,8 +39,11 @@ public class Main extends Application {
         //Side Bar Buttons
         Button homeButton = new Button("Home");
         homeButton.prefHeight(25);
+        homeButton.setPrefWidth(150);
+        homeButton.setStyle("");
         Button settingsButton = new Button("Settings");
         settingsButton.prefHeight(25);
+        homeButton.setPrefWidth(150);
 
         sideBar.getChildren().addAll(homeButton, settingsButton);
 
@@ -49,8 +56,6 @@ public class Main extends Application {
         StackPane Home = new StackPane();
         Image ThumbImg = new Image("assets/images/PlayBckg.png");
         ImageView ThumbnailImage = new ImageView(ThumbImg);
-        //Thumbnail.fitWidthProperty().bind(window.widthProperty());
-        //Thumbnail.fitHeightProperty().bind(middleFrame.heightProperty());
         ThumbnailImage.setFitWidth(750);
 
         Home.getChildren().addAll(ThumbnailImage);
@@ -91,7 +96,8 @@ public class Main extends Application {
         playButton.setOnAction(e ->{
             AlertBox.display("Warning", "This game is not finished.", "Continue");
             window.setScene(game);
-            //playSound("main.wav", true, "music");
+            shopMusic.setCycleCount(9999);
+            shopMusic.play();
         });
 
         bottomBox.getChildren().addAll(title, playButton);
