@@ -20,6 +20,7 @@ public class Main extends Application {
     Scene launcher, game;
     AudioClip shopMusic = new AudioClip("../assets/sounds/music/shop.wav");
     AudioClip mainMusic = new AudioClip("../assets/sounds/music/main.wav");
+    AudioClip oofSound = new AudioClip("../assets/sounds/misc/oof.mp3");
 
     public void openLauncher(Stage primaryStage) {
 
@@ -97,7 +98,7 @@ public class Main extends Application {
             AlertBox.display("Warning", "This game is not finished.", "Continue");
             window.setScene(game);
             shopMusic.setCycleCount(9999);
-            shopMusic.play();
+            oofSound.play();
         });
 
         bottomBox.getChildren().addAll(title, playButton);
