@@ -142,20 +142,15 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-
         launch(args);
-
     }
 
 
     public void start(Stage primaryStage) throws Exception{
-
         openLauncher(primaryStage);
-
     }
 
     private void closeProgram() {
-
         Boolean answer = ConfirmBox.display("Exit", "Are you sure you want to exit?", "Yes", "No");
 
         if (answer) {
@@ -163,7 +158,6 @@ public class Main extends Application {
             InfoBox.stopDisplay();
             window.close();
         }
-
     }
 
 }
