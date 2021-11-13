@@ -18,9 +18,10 @@ public class Main extends Application {
 
     Stage window;
     Scene launcher, game;
-    AudioClip shopMusic = new AudioClip("../assets/sounds/music/shop.wav");
-    AudioClip mainMusic = new AudioClip("../assets/sounds/music/main.wav");
-    AudioClip oofSound = new AudioClip("../assets/sounds/misc/oof.mp3");
+    AudioClip test = new AudioClip("https://github.com/sgrinev/mastering-javafx-9-10-book/raw/master/resources/mouse-click.wav");
+    //AudioClip shopMusic = new AudioClip("../assets/sounds/music/shop.wav");
+    //AudioClip mainMusic = new AudioClip("../assets/sounds/music/main.wav");
+    //AudioClip oofSound = new AudioClip("../assets/sounds/misc/oof.mp3");
 
     public void openLauncher(Stage primaryStage) {
 
@@ -97,8 +98,8 @@ public class Main extends Application {
         playButton.setOnAction(e ->{
             AlertBox.display("Warning", "This game is not finished.", "Continue");
             window.setScene(game);
-            shopMusic.setCycleCount(9999);
-            oofSound.play();
+            //shopMusic.setCycleCount(9999);
+            test.play();
         });
 
         bottomBox.getChildren().addAll(title, playButton);
