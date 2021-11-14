@@ -14,14 +14,16 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+import java.util.Objects;
+
 public class Main extends Application {
 
     Stage window;
     Scene launcher, game;
-    AudioClip test = new AudioClip("https://github.com/sgrinev/mastering-javafx-9-10-book/raw/master/resources/mouse-click.wav");
-    //AudioClip shopMusic = new AudioClip("../assets/sounds/music/shop.wav");
-    //AudioClip mainMusic = new AudioClip("../assets/sounds/music/main.wav");
-    //AudioClip oofSound = new AudioClip("../assets/sounds/misc/oof.mp3");
+
+    AudioClip shopMusic = new AudioClip(Objects.requireNonNull(Main.class.getResource("../assets/sounds/music/shop.wav")).toString());
+    AudioClip mainMusic = new AudioClip(Objects.requireNonNull(Main.class.getResource("../assets/sounds/music/main.wav")).toString());
+    AudioClip oofSound = new AudioClip(Objects.requireNonNull(Main.class.getResource("../assets/sounds/misc/oof.mp3")).toString());
 
     public void openLauncher(Stage primaryStage) {
 
@@ -33,8 +35,8 @@ public class Main extends Application {
         topBox.setPrefHeight(350);
 
         //Left Side Bar
-        VBox sideBar = new VBox(5);
-        VBox.setMargin(sideBar, new Insets(5, 0, 5, 0));
+        VBox sideBar = new VBox();
+        //VBox.setMargin(sideBar, new Insets(0, 0, 0, 0));
         sideBar.setStyle("-fx-background-color: #414141;");
         sideBar.setPrefWidth(150);
 
@@ -42,10 +44,11 @@ public class Main extends Application {
         Button homeButton = new Button("Home");
         homeButton.prefHeight(25);
         homeButton.setPrefWidth(150);
-        homeButton.setStyle("");
+        homeButton.setStyle("-fx-border-radius: 0;");
         Button settingsButton = new Button("Settings");
         settingsButton.prefHeight(25);
-        homeButton.setPrefWidth(150);
+        settingsButton.setPrefWidth(150);
+        settingsButton.setStyle("-fx-border-radius: 0;");
 
         sideBar.getChildren().addAll(homeButton, settingsButton);
 
@@ -98,8 +101,9 @@ public class Main extends Application {
         playButton.setOnAction(e ->{
             AlertBox.display("Warning", "This game is not finished.", "Continue");
             window.setScene(game);
+            window.setFullScreen(true);
             //shopMusic.setCycleCount(9999);
-            test.play();
+            oofSound.play();
         });
 
         bottomBox.getChildren().addAll(title, playButton);
@@ -126,6 +130,7 @@ public class Main extends Application {
         Button btn2 = new Button("Leave Game");
         btn2.setOnAction(e ->{
             window.setScene(launcher);
+            window.setFullScreen(false);
             //player.stop();
         });
 
@@ -159,7 +164,7 @@ public class Main extends Application {
     }
 
     private void closeProgram() {
-        Boolean answer = ConfirmBox.display("Exit", "Are you sure you want to exit?", "Yes", "No");
+        boolean answer = ConfirmBox.display("Exit", "Are you sure you want to exit?", "Yes", "No");
 
         if (answer) {
             InfoBox.display("Saving", "Saving data...");
