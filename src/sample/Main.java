@@ -109,13 +109,13 @@ public class Main extends Application {
         bottomBox.getChildren().addAll(title, playButton);
 
         //Exit Button
-        Button exitButton = new Button();
+        /* Button exitButton = new Button();
         Image exitImg = new Image("assets/images/exitbtn.png");
         ImageView exitButtonImg = new ImageView(exitImg);
         exitButton.setGraphic(exitButtonImg);
         exitButton.setPadding(Insets.EMPTY);
         exitButton.setStyle("-fx-background-color: transparent;");
-        exitButton.setOnAction(e -> closeProgram());
+        exitButton.setOnAction(e -> closeProgram());*/
 
         //Launcher Scene
         VBox launcherRoot = new VBox(topBox, bottomBox);
@@ -129,8 +129,7 @@ public class Main extends Application {
         //Exit Button
         Button btn2 = new Button("Leave Game");
         btn2.setOnAction(e ->{
-            window.setScene(launcher);
-            window.setFullScreen(false);
+            closeGame();
             //player.stop();
         });
 
@@ -145,10 +144,7 @@ public class Main extends Application {
         window.setTitle("Caka Java Edition");
         window.getIcons().add(new Image("assets/images/GameIcon.png"));
         //window.setResizable(false);
-        window.setOnCloseRequest(e -> {
-            e.consume();
-            closeProgram();
-        });
+        //window.setOnCloseRequest(e -> e.consume() });
 
         window.show();
 
@@ -163,13 +159,14 @@ public class Main extends Application {
         openLauncher(primaryStage);
     }
 
-    private void closeProgram() {
+    private void closeGame() {
         boolean answer = ConfirmBox.display("Exit", "Are you sure you want to exit?", "Yes", "No");
 
         if (answer) {
             InfoBox.display("Saving", "Saving data...");
             InfoBox.stopDisplay();
-            window.close();
+            window.setScene(launcher);
+            window.setFullScreen(false);
         }
     }
 
