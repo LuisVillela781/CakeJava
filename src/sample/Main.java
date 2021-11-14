@@ -150,15 +150,6 @@ public class Main extends Application {
 
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
-
-
-    public void start(Stage primaryStage) throws Exception{
-        openLauncher(primaryStage);
-    }
-
     private void closeGame() {
         boolean answer = ConfirmBox.display("Exit", "Are you sure you want to exit?", "Yes", "No");
 
@@ -168,6 +159,15 @@ public class Main extends Application {
             window.setScene(launcher);
             window.setFullScreen(false);
         }
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+
+    public void start(Stage primaryStage) throws Exception{
+        openLauncher(primaryStage);
     }
 
 }
