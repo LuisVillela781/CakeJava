@@ -1,6 +1,7 @@
 package sample;
 
 import javafx.application.Application;
+import javafx.event.Event;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -101,7 +102,7 @@ public class Main extends Application {
         playButton.setOnAction(e ->{
             AlertBox.display("Warning", "This game is not finished.", "Continue");
             window.setScene(game);
-            window.setFullScreen(true);
+            //window.setFullScreen(true);
             //shopMusic.setCycleCount(9999);
             oofSound.play();
         });
@@ -125,25 +126,36 @@ public class Main extends Application {
         launcher = new Scene(launcherRoot, 850, 500);
         //launcher.getStylesheets().add(getClass().getClassLoader().getResource("sample/GameLauncher.css").toExternalForm());
 
+        //Game Scene
+        StackPane gameRoot = new StackPane();
+
+        Image gameimg = new Image("assets/images/Image1.png");
+        Image switcherimg = new Image("assets/images/switcher.png");
+        ImageView gamebackimg = new ImageView(gameimg);
+        Button switcher = new Button();
+        switcher.setGraphic(new ImageView(switcherimg));
+        switcher.setPadding(Insets.EMPTY);
+        switcher.setStyle("-fx-background-color: transparent;");
 
         //Exit Button
+        /*
         Button btn2 = new Button("Leave Game");
         btn2.setOnAction(e ->{
             closeGame();
             //player.stop();
-        });
+        });*/
 
-
-        //Game Scene
-        StackPane gameRoot = new StackPane();
-        gameRoot.getChildren().addAll(btn2);
-        game = new Scene(gameRoot, 750, 300);
+        gameRoot.getChildren().addAll(gamebackimg, switcher);
+        game = new Scene(gameRoot, 1280, 720);
 
         //Preparing Stage
         window.setScene(launcher);
         window.setTitle("Caka Java Edition");
         window.getIcons().add(new Image("assets/images/GameIcon.png"));
         //window.setResizable(false);
+        if (window.getScene() == game) {
+
+        }
         //window.setOnCloseRequest(e -> e.consume() });
 
         window.show();
